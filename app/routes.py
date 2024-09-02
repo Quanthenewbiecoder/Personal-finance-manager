@@ -4,7 +4,7 @@ from app.models import User, Transaction, Category, DailyTotal
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 import logging
-from datetime import datetime, date as dt_date, timedelta
+from datetime import datetime, date as dt_date
 from app.forms import EditTransactionForm, AddTransactionForm
 import calendar
 from sqlalchemy import func
