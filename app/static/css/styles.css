@@ -103,6 +103,7 @@ button[type="submit"] {
     cursor: pointer;
     margin-top: 20px;
     transition: background-color 0.3s ease;
+    margin-bottom: 15px; /* Added spacing between buttons */
 }
 
 button[type="submit"]:hover {
@@ -227,6 +228,7 @@ li {
     border-radius: 6px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    margin-bottom: 15px; /* Added spacing between buttons */
 }
 
 .add-link:hover {
@@ -377,6 +379,7 @@ li {
     cursor: pointer;
     margin-top: 20px;
     transition: background-color 0.3s ease;
+    margin-bottom: 15px; /* Added spacing between buttons */
 }
 
 .transaction-form button[type="submit"]:hover {
@@ -386,7 +389,6 @@ li {
 .transaction-form .cancel-link {
     display: block;
     margin-top: 20px;
-    font-size: 16px;
     text-align: center;
     color: #007bff;
     text-decoration: none;
@@ -394,4 +396,33 @@ li {
 
 .transaction-form .cancel-link:hover {
     text-decoration: underline;
+}
+
+/* Error messages */
+.error-message {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Success messages */
+.success-message {
+    color: #4CAF50;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+    /* Increase container width for better spacing */
+    .container {
+        width: 95%;
+    }
+
+    /* Adjust button padding and margins for smaller screens */
+    button[type="submit"], .add-link, .transaction-form button[type="submit"] {
+        padding: 14px;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
 }
