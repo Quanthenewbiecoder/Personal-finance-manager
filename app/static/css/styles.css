@@ -26,6 +26,10 @@ header {
   color: white;
   padding: 10px 0;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 header h1 {
@@ -33,14 +37,20 @@ header h1 {
   font-size: 24px;
 }
 
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 header nav ul {
   list-style: none;
-  margin: 10px 0 0;
+  display: flex;
+  margin: 0;
   padding: 0;
 }
 
 header nav ul li {
-  display: inline;
   margin: 0 10px;
 }
 
@@ -51,6 +61,17 @@ header nav ul li a {
 
 header nav ul li a:hover {
   text-decoration: underline;
+}
+
+/* Menu Toggle Button for Mobile */
+.menu-toggle {
+  display: none; /* Hidden by default */
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 /* Main content area */
@@ -410,6 +431,31 @@ li {
   /* Increase container width for better spacing */
   .container {
     width: 95%;
+  }
+
+  /* Header */
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header nav {
+    width: 100%;
+  }
+
+  header nav ul {
+    display: none; /* Hide menu by default on small screens */
+    flex-direction: column;
+    width: 100%;
+  }
+
+  header nav.active ul {
+    display: flex; /* Show menu when active class is added */
+  }
+
+  /* Show combined button on mobile, and hide separate buttons */
+  .menu-toggle {
+    display: block; /* Show toggle button on small screens */
   }
 
   /* Adjust button padding and margins for smaller screens */
