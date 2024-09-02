@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Personal Finance Manager{% endblock %}</title>
+    <!-- Linking the CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Linking the favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!-- Website title with link to the index page -->
+            <h1><a href="{{ url_for('index') }}">Personal Finance Manager</a></h1>
+            <nav>
+                <ul>
+                    <!-- Navigation links with dynamic rendering based on authentication status -->
+                    <li><a href="{{ url_for('overview') }}">Balances</a></li>
+                    <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('add_transaction') }}">Add Transaction</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                        <li><a href="{{ url_for('register') }}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <!-- Dynamic content block for individual pages -->
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Personal Finance Manager. All rights reserved.</p>
+    </footer>
+</body>
+</html>

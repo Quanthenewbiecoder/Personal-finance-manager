@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard - Personal Finance Manager
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-summary">
+    <h1>Dashboard</h1>
+    <h2>Total Money for {{ selected_month_name }} {{ selected_year }}: £{{ total_money }}</h2>
+    <h3>Total Savings for {{ selected_month_name }} {{ selected_year }}: £{{ total_savings }}</h3>
+
+    <form method="GET" action="{{ url_for('dashboard') }}">
+        <label for="month">Select Month:</label>
+        <select name="month" id="month">
+            {% for month, name in months.items() %}
+                <option value="{{ month }}" {% if month == selected_month %}selected{% endif %}>{{ name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="year">Select Year:</label>
+        <select name="year" id="year">
+            {% for year in years %}
+                <option value="{{ year }}" {% if year == selected_year %}selected{% endif %}>{{ year }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Show</button>
+    </form>
+
+</div>
+
+<div class="dashboard-container">
+    <!-- Iterate over each date in the month -->
+    {% for date, categories in date_data.items() %}
+        <div class="date-container">
+            <h2>{{ date }}</h2>
+
+            {% for category_name, transactions in categories.items() %}
+                <div class="category-container">
+                    <h3>{{ category_name.capitalize() }}</h3>
+                    <ul>
+                        {% if transactions %}
+                            {% for transaction in transactions %}
+                                <li>
+                                    {{ transaction.description }}
+                                    {% if category_name == 'income' %}
+                                        + £{{ transaction.amount }}
+                                    {% elif category_name == 'expense' %}
+                                        - £{{ transaction.amount }}
+                                    {% elif category_name == 'savings' %}
+                                        + £{{ transaction.amount }}
+                                    {% endif %}
+                                    <!-- Edit button -->
+                                    <a href="{{ url_for('edit_transaction', transaction_id=transaction.id) }}" class="edit-link">Edit</a>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li>No transactions found.</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            {% endfor %}
+
+            <!-- Display daily totals -->
+            <div class="daily-summary">
+                <h4>Daily Totals:</h4>
+                <p>Total: {% if (daily_totals[date].income - daily_totals[date].expense) >= 0 %} + £{{ daily_totals[date].income - daily_totals[date].expense }} {% else %} - £{{ (daily_totals[date].income - daily_totals[date].expense) | abs }} {% endif %}</p>
+                <p>Savings: + £{{ daily_totals[date].savings }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<a class="add-link" href="{{ url_for('add_transaction') }}">Add Transaction</a>
+{% endblock %}
