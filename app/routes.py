@@ -13,10 +13,12 @@ from sqlalchemy.exc import IntegrityError
 # Initialize logging
 logging.basicConfig(level=logging.INFO)
 
+
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -47,12 +49,14 @@ def register():
         hashed_password = generate_password_hash(password)
 
         # Check if the hashed password already exists in the users table
-        existing_user = User.query.filter(User.password_hash == hashed_password).first()
+        existing_user = User.query.filter(
+            User.password_hash == hashed_password).first()
         if existing_user:
             return jsonify({"success": False, "message": "Password already in use. Please choose a different one."}), 400
 
         # Check if username or email already exists
-        existing_user = User.query.filter((User.email == email) | (User.username == username)).first()
+        existing_user = User.query.filter(
+            (User.email == email) | (User.username == username)).first()
         if existing_user:
             if existing_user.email == email:
                 return jsonify({"success": False, "message": "Email already exists."}), 400
@@ -60,7 +64,8 @@ def register():
                 return jsonify({"success": False, "message": "Username already exists."}), 400
 
         try:
-            new_user = User(username=username, email=email, password_hash=hashed_password)
+            new_user = User(username=username, email=email,
+                            password_hash=hashed_password)
             db.session.add(new_user)
             db.session.commit()
         except IntegrityError as e:
@@ -73,10 +78,12 @@ def register():
 
     return render_template('register.html')
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('overview'))  # Redirect to overview if already logged in
+        # Redirect to overview if already logged in
+        return redirect(url_for('overview'))
 
     if request.method == 'POST':
         username = request.form.get('username')
@@ -95,6 +102,7 @@ def login():
 
     return render_template('login.html')
 
+
 @app.route('/logout')
 @login_required
 def logout():
@@ -103,6 +111,7 @@ def logout():
     flash('You have been logged out.', 'info')
     logging.info(f"User logged out: {username}")
     return redirect(url_for('index'))
+
 
 @app.route('/add_transaction', methods=['GET', 'POST'])
 @login_required
@@ -127,7 +136,8 @@ def add_transaction():
             return redirect(url_for('add_transaction'))
 
         # Add the transaction to the database
-        new_transaction = Transaction(description=description, amount=amount, date=date, category_id=category_id, user_id=current_user.id)
+        new_transaction = Transaction(description=description, amount=amount,
+                                      date=date, category_id=category_id, user_id=current_user.id)
         db.session.add(new_transaction)
 
         # Update daily totals
@@ -141,6 +151,7 @@ def add_transaction():
     categories = Category.query.all()
     return render_template('add_transaction.html', form=form, categories=categories)
 
+
 def update_daily_totals(user_id, date):
     logging.info(f"Updating daily totals for user {user_id} on {date}")
 
@@ -153,16 +164,21 @@ def update_daily_totals(user_id, date):
         raise ValueError(f"Unsupported date format: {type(date)}")
 
     # Retrieve transactions for the specified user and date
-    transactions = Transaction.query.filter_by(user_id=user_id).filter(db.func.date(Transaction.date) == date).all()
+    transactions = Transaction.query.filter_by(user_id=user_id).filter(
+        db.func.date(Transaction.date) == date).all()
 
     # Calculate totals
-    total_income = sum(t.amount for t in transactions if t.category.name.lower() == 'income')
-    total_expense = sum(t.amount for t in transactions if t.category.name.lower() == 'expense')
-    total_savings = sum(t.amount for t in transactions if t.category.name.lower() == 'savings')
+    total_income = sum(
+        t.amount for t in transactions if t.category.name.lower() == 'income')
+    total_expense = sum(
+        t.amount for t in transactions if t.category.name.lower() == 'expense')
+    total_savings = sum(
+        t.amount for t in transactions if t.category.name.lower() == 'savings')
     net_total = total_income - total_expense + total_savings
 
     # Check if a daily total already exists for this date
-    daily_total = DailyTotal.query.filter_by(user_id=user_id, date=date).first()
+    daily_total = DailyTotal.query.filter_by(
+        user_id=user_id, date=date).first()
 
     if daily_total:
         # Update existing record
@@ -185,6 +201,7 @@ def update_daily_totals(user_id, date):
     db.session.commit()
     logging.info("Daily totals updated and committed.")
 
+
 @app.route('/dashboard', methods=['GET'])
 @login_required
 def dashboard():
@@ -206,11 +223,15 @@ def dashboard():
     months = {f'{month:02d}': f'{calendar.month_name[month]}' for month in range(1, 13)}
     years = list(range(2023, 2025))
 
-    # Fetch transactions for the selected month and year
+    # Fetch transactions for the selected month and year for the current user
     start_date = f'{selected_year}-{selected_month:02d}-01'
     end_date = f'{selected_year}-{selected_month + 1:02d}-01' if selected_month < 12 else f'{selected_year + 1}-01-01'
 
-    transactions = Transaction.query.filter(Transaction.date >= start_date, Transaction.date < end_date).all()
+    transactions = Transaction.query.filter(
+        Transaction.user_id == current_user.id,  # Ensure transactions are for the current user
+        Transaction.date >= start_date,
+        Transaction.date < end_date
+    ).all()
 
     # Process transactions
     date_data = {}
@@ -265,10 +286,11 @@ def dashboard():
 @app.route('/edit_transaction/<int:transaction_id>', methods=['GET', 'POST'])
 @login_required
 def edit_transaction(transaction_id):
-    transaction = Transaction.query.get_or_404(transaction_id)
+    transaction = Transaction.query.filter_by(id=transaction_id, user_id=current_user.id).first_or_404()
     form = EditTransactionForm(
         obj=transaction,
-        category_type=transaction.category.name  # Pass the current category type to the form
+        # Pass the current category type to the form
+        category_type=transaction.category.name
     )
 
     if form.validate_on_submit():
@@ -286,10 +308,11 @@ def edit_transaction(transaction_id):
 
     return render_template('edit_transaction.html', form=form, transaction=transaction)
 
+
 @app.route('/delete_transaction/<int:transaction_id>', methods=['POST'])
 @login_required
 def delete_transaction(transaction_id):
-    transaction = Transaction.query.get_or_404(transaction_id)
+    transaction = Transaction.query.filter_by(id=transaction_id, user_id=current_user.id).first_or_404()
 
     # Delete the transaction
     db.session.delete(transaction)
@@ -302,6 +325,7 @@ def delete_transaction(transaction_id):
 
     return redirect(url_for('dashboard'))
 
+
 @app.route('/overview')
 @login_required
 def overview():
@@ -310,19 +334,22 @@ def overview():
     CATEGORY_ID_EXPENSE = 2
     CATEGORY_ID_SAVINGS = 3
 
-    # Calculate total income for all months
+    # Calculate total income for all months for the current user
     total_income = db.session.query(func.sum(Transaction.amount)).filter(
+        Transaction.user_id == current_user.id,
         Transaction.category_id == CATEGORY_ID_INCOME,
         Transaction.amount > 0
     ).scalar() or 0
 
-    # Calculate total expenses for all months
+    # Calculate total expenses for all months for the current user
     total_expenses = db.session.query(func.sum(Transaction.amount)).filter(
+        Transaction.user_id == current_user.id,
         Transaction.category_id == CATEGORY_ID_EXPENSE
     ).scalar() or 0
 
-    # Calculate total savings for all months
+    # Calculate total savings for all months for the current user
     total_savings = db.session.query(func.sum(Transaction.amount)).filter(
+        Transaction.user_id == current_user.id,
         Transaction.category_id == CATEGORY_ID_SAVINGS,
         Transaction.amount > 0
     ).scalar() or 0
