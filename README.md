@@ -58,12 +58,3 @@ The entry point for the application, which starts the Flask development server. 
 ### `requirements.txt`
 
 Lists all dependencies needed for the project, such as Flask, Flask-SQLAlchemy, and Flask-Babel. This file facilitates easy installation of necessary packages and ensures consistent environment setup.
-
-## Installation and Setup
-
-To set up the Financial Manager project on your local machine, follow these steps:
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/yourusername/financial-manager.git
-   cd financial-manager
