@@ -1,8 +1,5 @@
 # Financial Manager Project
 
-#### Video Demo: [Watch the video here](#)  
-*(Replace the # with the URL of your video)*
-
 ## Project Overview
 
 The **Financial Manager** is a comprehensive personal finance management application designed to help users keep track of their income, expenses, and savings. Utilizing **Flask** for backend operations, **HTML**, **CSS**, and **JavaScript** for the frontend, and **SQLite** for data management, this application offers a robust solution for managing personal finances. The goal is to provide users with a straightforward and efficient way to monitor their financial health and make informed decisions.
