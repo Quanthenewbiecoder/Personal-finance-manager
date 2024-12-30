@@ -1,14 +1,10 @@
-Here’s an improved and polished version of your README that highlights your project in a way that appeals to HR professionals for a Software Engineer role. The enhancements emphasize your technical skills, problem-solving abilities, and project impact.
-
----
-
 # Financial Manager Project
 
 ## 🚀 Project Overview  
 
 The **Financial Manager** is a dynamic personal finance management application crafted to empower users to take control of their finances. With its user-friendly interface and robust functionality, this application simplifies the tracking of income, expenses, and savings.  
 
-Built using **Flask** for backend operations, **HTML**, **CSS**, and **JavaScript** for the frontend, and **SQLite** for data management, this project demonstrates my ability to design, develop, and deploy scalable software solutions.  
+Built using **Flask** for backend operations, **HTML**, **CSS**, and **JavaScript** for the Front-end, and **SQLite** for data management, this project demonstrates my ability to design, develop, and deploy scalable software solutions.  
 
 Key features:  
 - **Secure Authentication**: Ensures user data is protected.  
@@ -30,23 +26,23 @@ Click the image below to watch the demo on YouTube:
 
 ### **Dashboard**  
 Provides a comprehensive summary of income, expenses, and savings.  
-![Dashboard](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/master/app/static/projectimages/Dashboard.png)  
+![Dashboard](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/Dashboard.png)  
 
 ### **Login Page**  
 Streamlined login form with real-time validation.  
-![Login Page](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/master/app/static/projectimages/Login.png)  
+![Login Page](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/Login.png)  
 
 ### **Successful Login Message (Popup)**  
 Confirms secure access to user accounts.  
-![Login Successful](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/master/app/static/projectimages/loginnoti.png)  
+![Login Successful](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/loginnoti.png)  
 
 ### **Register Page**  
 Enables new users to sign up with ease.  
-![Register Page](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/master/app/static/projectimages/Register.png)  
+![Register Page](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/Register.png)  
 
 ### **Successful Registration Message (Popup)**  
 Welcomes new users with a success notification.  
-![Register Successful](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/master/app/static/projectimages/registernoti.png)  
+![Register Successful](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/registernoti.png)  
 
 ### **Add Transaction**  
 Quickly add new income or expenses.  
@@ -54,17 +50,17 @@ Quickly add new income or expenses.
 
 ### **Edit Transaction**  
 Modify existing financial entries with ease.  
-![Edit Transaction](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/master/app/static/projectimages/Edit_transaction.png)  
+![Edit Transaction](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/Edit_transaction.png)  
 
 ### **Balances Overview**  
 Visualizes balances across months for easy comparison.  
 
 #### December Balances  
-![December Balances 1](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/master/app/static/projectimages/December2.png)  
-![December Balances 2](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/master/app/static/projectimages/December2.png)  
+![December Balances 1](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/December2.png)  
+![December Balances 2](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/December2.png)  
 
 #### September Balance  
-![September Balance](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/master/app/static/projectimages/September.png)  
+![September Balance](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/September.png)  
 
 ---
 
