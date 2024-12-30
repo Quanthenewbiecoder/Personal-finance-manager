@@ -54,7 +54,3 @@ Contains configuration settings for the Flask application, including the secret 
 ### `run.py`
 
 The entry point for the application, which starts the Flask development server. This script is essential for local testing and development.
-
-### `requirements.txt`
-
-Lists all dependencies needed for the project, such as Flask, Flask-SQLAlchemy, and Flask-Babel. This file facilitates easy installation of necessary packages and ensures consistent environment setup.
