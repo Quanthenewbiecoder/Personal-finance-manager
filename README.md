@@ -1,7 +1,3 @@
-Here’s an improved and polished version of your README that highlights your project in a way that appeals to HR professionals for a Software Engineer role. The enhancements emphasize your technical skills, problem-solving abilities, and project impact.
-
----
-
 # Financial Manager Project
 
 ## 🚀 Project Overview  
