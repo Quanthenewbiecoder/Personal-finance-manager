@@ -26,41 +26,41 @@ Click the image below to watch the demo on YouTube:
 
 ### **Dashboard**  
 Provides a comprehensive summary of income, expenses, and savings.  
-![Dashboard](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimages/Dashboard.png)  
+![Dashboard](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/Dashboard.png)  
 
 ### **Login Page**  
 Streamlined login form with real-time validation.  
-![Login Page](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimages/Login.png)  
+![Login Page](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/Login.png)  
 
 ### **Successful Login Message (Popup)**  
 Confirms secure access to user accounts.  
-![Login Successful](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimages/loginnoti.png)  
+![Login Successful](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/loginnoti.png)  
 
 ### **Register Page**  
 Enables new users to sign up with ease.  
-![Register Page](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimages/Register.png)  
+![Register Page](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/Register.png)  
 
 ### **Successful Registration Message (Popup)**  
 Welcomes new users with a success notification.  
-![Register Successful](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimages/registernoti.png)  
+![Register Successful](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/registernoti.png)  
 
 ### **Add Transaction**  
 Quickly add new income or expenses.  
-![Add Transaction](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimages/Add_transaction.png)  
+![Add Transaction](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/Add_transaction.png)  
 
 ### **Edit Transaction**  
 Modify existing financial entries with ease.  
-![Edit Transaction](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimages/Edit_transaction.png)  
+![Edit Transaction](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/Edit_transaction.png)  
 
 ### **Balances Overview**  
 Visualizes balances across months for easy comparison.  
 
 #### December Balances  
-![December Balances 1](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimages/December2.png)  
-![December Balances 2](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimages/December2.png)  
+![December Balances 1](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/December2.png)  
+![December Balances 2](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/December2.png)  
 
 #### September Balance  
-![September Balance](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimages/September.png)  
+![September Balance](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/September.png)  
 
 ---
 
