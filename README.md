@@ -50,7 +50,7 @@ Welcomes new users with a success notification.
 
 ### **Add Transaction**  
 Quickly add new income or expenses.  
-![Add Transaction](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/master/app/static/projectimages/Add_transaction.png)  
+![Add Transaction](https://raw.githubusercontent.com/Quanthenewbiecoder/Personal-finance-manager/main/app/static/projectimage/Add_transaction.png)
 
 ### **Edit Transaction**  
 Modify existing financial entries with ease.  
