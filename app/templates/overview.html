@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+Overview - Personal Finance Manager
+{% endblock %}
+
+{% block content %}
+<h1>Account Balances:</h1>
+
+<div class="overview-summary">
+    <h2>Total Money: £{{ total_money }}</h2>
+    <h2>Total Savings: £{{ total_savings }}</h2>
+</div>
+
+{% endblock %}

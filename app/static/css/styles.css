@@ -1,0 +1,478 @@
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Container */
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li {
+  margin: 0 10px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+header nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Menu Toggle Button for Mobile */
+.menu-toggle {
+  display: none; /* Hidden by default */
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Main content area */
+main.container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+/* Forms styling */
+form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px; /* Added spacing between buttons */
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Register/Login container styling */
+.register-container,
+.login-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 50px auto;
+  width: 90%;
+  max-width: 500px;
+}
+
+.register-container h2,
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.register-container p,
+.login-container p {
+  text-align: center;
+}
+
+.register-container a,
+.login-container a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-container a:hover,
+.login-container a:hover {
+  text-decoration: underline;
+}
+
+/* Footer styling */
+footer {
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Dashboard styling */
+.dashboard-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.date-container {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.category-container {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.category-container h3 {
+  margin-bottom: 10px;
+}
+
+.date-container h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #4caf50;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 5px;
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Edit link styling */
+.edit-link {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.edit-link:hover {
+  text-decoration: underline;
+}
+
+/* Add transaction link */
+.add-link {
+  display: block;
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  background-color: #4caf50;
+  padding: 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px; /* Added spacing between buttons */
+}
+
+.add-link:hover {
+  background-color: #45a049;
+}
+
+/* Dashboard summary styling */
+.dashboard-summary {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.dashboard-summary h2,
+.dashboard-summary h3 {
+  margin: 10px 0;
+}
+
+.dashboard-summary h2 {
+  color: #4caf50;
+}
+
+.dashboard-summary h3 {
+  color: #007bff;
+}
+
+/* Daily summary styling */
+.daily-summary {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.daily-summary h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.daily-summary p {
+  margin: 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.daily-summary p:first-child {
+  color: #4caf50; /* Income */
+}
+
+.daily-summary p:nth-child(2) {
+  color: #e74c3c; /* Expense */
+}
+
+.daily-summary p:last-child {
+  color: #007bff; /* Savings */
+}
+
+.debug-output {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Overview summary styling */
+.overview-summary {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  text-align: center; /* Center align all text within this container */
+}
+
+.overview-summary h2,
+.overview-summary h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.overview-summary h2 {
+  color: #4caf50;
+}
+
+.overview-summary h3 {
+  color: #2196f3;
+}
+
+/* Add Transaction Form */
+.transaction-form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-form .form-group {
+  margin-bottom: 20px;
+}
+
+.transaction-form .form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.transaction-form input[type="text"],
+.transaction-form input[type="number"],
+.transaction-form input[type="date"],
+.transaction-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.transaction-form button[type="submit"] {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px; /* Added spacing between buttons */
+}
+
+.transaction-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.transaction-form .cancel-link {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.transaction-form .cancel-link:hover {
+  text-decoration: underline;
+}
+
+/* Error messages */
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Desktop and Mobile Button Visibility */
+.desktop-only {
+  display: inline; /* Show by default on larger screens */
+}
+
+.mobile-only {
+  display: none; /* Hide by default on larger screens */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+  /* Increase container width for better spacing */
+  .container {
+    width: 95%;
+  }
+
+  /* Header */
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header nav {
+    width: 100%;
+  }
+
+  header nav ul {
+    display: none; /* Hide menu by default on small screens */
+    flex-direction: column;
+    width: 100%;
+  }
+
+  header nav.active ul {
+    display: flex; /* Show menu when active class is added */
+  }
+
+  /* Show combined button on mobile, and hide separate buttons */
+  .menu-toggle {
+    display: block; /* Show toggle button on small screens */
+  }
+
+  /* Adjust button padding and margins for smaller screens */
+  button[type="submit"],
+  .add-link,
+  .transaction-form button[type="submit"] {
+    padding: 14px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  /* Show combined button on mobile, and hide separate buttons */
+  .desktop-only {
+    display: none; /* Hide on smaller screens */
+  }
+
+  .mobile-only {
+    display: inline; /* Show on smaller screens */
+  }
+}
