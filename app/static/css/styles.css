@@ -476,3 +476,63 @@ li {
     display: inline; /* Show on smaller screens */
   }
 }
+
+/* index page::
+
+/* Collapsible Table Section */
+.month-header {
+  cursor: pointer;
+  background-color: #f7f7f7;
+  padding: 10px;
+  font-size: 1.5em;
+  color: #333;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.month-header:hover {
+  background-color: #eaeaea;
+}
+
+.month-table {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  max-height: 0; /* Hidden by default */
+}
+
+.month-table.expanded {
+  max-height: 1000px; /* Arbitrary large value to expand */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+table {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}

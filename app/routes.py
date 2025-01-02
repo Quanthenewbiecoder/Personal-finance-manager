@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request, jsonify
+from flask import render_template, flash, redirect, url_for, request, jsonify, Response
 from app import app, db
 from app.models import User, Transaction, Category, DailyTotal
 from flask_login import login_user, logout_user, current_user, login_required
@@ -7,17 +7,84 @@ import logging
 from datetime import datetime, date as dt_date
 from app.forms import EditTransactionForm, AddTransactionForm
 import calendar
+from collections import defaultdict
 from sqlalchemy import func
 from sqlalchemy.exc import IntegrityError
+import csv
+from docx import Document
+import io
+
 
 # Initialize logging
 logging.basicConfig(level=logging.INFO)
 
 
 @app.route('/')
-@app.route('/index')
+@login_required
 def index():
-    return render_template('index.html')
+    # Fetch transactions for the current user
+    transactions = Transaction.query.filter_by(user_id=current_user.id).order_by(Transaction.date.desc()).all()
+
+    # Group transactions by year and month
+    grouped_transactions = defaultdict(list)
+    for transaction in transactions:
+        month_year = transaction.date.strftime('%Y-%m')  # Format: 'YYYY-MM'
+        grouped_transactions[month_year].append(transaction)
+
+    return render_template('index.html', grouped_transactions=grouped_transactions)
+
+
+@app.route('/download/<month_year>')
+@login_required
+def download_transactions(month_year):
+    # Fetch transactions for the specified month and year
+    transactions = Transaction.query.filter(
+        Transaction.user_id == current_user.id,
+        Transaction.date.like(f"{month_year}-%")
+    ).all()
+
+    # Check if transactions are available
+    if not transactions:
+        return Response(
+            "No transactions found for the selected month.",
+            mimetype='text/plain'
+        )
+
+    # Create a Word document
+    doc = Document()
+    doc.add_heading(f"Transactions for {month_year}", level=1)
+
+    # Add a table to the document
+    table = doc.add_table(rows=1, cols=5)
+    table.style = 'Table Grid'
+
+    # Add table headers
+    header_cells = table.rows[0].cells
+    header_cells[0].text = "ID"
+    header_cells[1].text = "Description"
+    header_cells[2].text = "Amount"
+    header_cells[3].text = "Date"
+    header_cells[4].text = "Category"
+
+    # Add rows to the table
+    for transaction in transactions:
+        category = transaction.category.name if transaction.category else 'N/A'
+        row_cells = table.add_row().cells
+        row_cells[0].text = str(transaction.id)
+        row_cells[1].text = transaction.description
+        row_cells[2].text = f"{transaction.amount:.2f}"
+        row_cells[3].text = transaction.date.strftime('%Y-%m-%d')
+        row_cells[4].text = category
+
+    # Save the document to an in-memory file
+    file_stream = io.BytesIO()
+    doc.save(file_stream)
+    file_stream.seek(0)
+
+    # Return the Word file as a response
+    response = Response(file_stream.read(), mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    response.headers.set('Content-Disposition', f'attachment; filename={month_year}_transactions.docx')
+    return response
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -221,7 +288,7 @@ def dashboard():
     # Get month and year names for display
     selected_month_name = calendar.month_name[selected_month]
     months = {f'{month:02d}': f'{calendar.month_name[month]}' for month in range(1, 13)}
-    years = list(range(2023, 2025))
+    years = list(range(2023, 2026))
 
     # Fetch transactions for the selected month and year for the current user
     start_date = f'{selected_year}-{selected_month:02d}-01'
@@ -231,7 +298,7 @@ def dashboard():
         Transaction.user_id == current_user.id,  # Ensure transactions are for the current user
         Transaction.date >= start_date,
         Transaction.date < end_date
-    ).all()
+    ).order_by(Transaction.date.desc()).all()  # Order by newest first
 
     # Process transactions
     date_data = {}

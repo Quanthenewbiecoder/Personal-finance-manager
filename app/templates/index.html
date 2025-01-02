@@ -3,7 +3,48 @@
 {% block title %}Home - Personal Finance Manager{% endblock %}
 
 {% block content %}
-<h1>Welcome to Personal Finance Manager</h1>
-<p>Manage your finances easily and effectively.</p>
-<a href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+{% if grouped_transactions %}
+    {% for month_year, transactions in grouped_transactions.items() %}
+    <div class="month-section">
+        <h2 class="month-header">{{ month_year }}</h2>
+        <div class="download-button">
+            <a href="{{ url_for('download_transactions', month_year=month_year) }}" class="btn btn-primary">
+                Download {{ month_year }} Transactions
+            </a>
+        </div>
+        <div class="month-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.id }}</td>
+                        <td>{{ transaction.description }}</td>
+                        <td>{{ transaction.amount }}</td>
+                        <td>{{ transaction.date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ transaction.category.name if transaction.category else 'N/A' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <h1>Welcome to Personal Finance Manager</h1>
+    <p>Manage your finances easily and effectively.</p>
+    <a href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+{% endif %}
+
+<!-- Include your JavaScript file -->
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
 {% endblock %}
