@@ -28,65 +28,77 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     xhr.setRequestHeader('Accept', 'application/json'); // Expect JSON response
 
     xhr.onload = function() {
-        try {
-            // Check if the response is not empty before parsing
-            if (xhr.responseText) {
-                var response = JSON.parse(xhr.responseText);
+    try {
+        // Check if the response is not empty before parsing
+        if (xhr.responseText) {
+            // If the response seems like HTML (error page), handle accordingly
+            if (xhr.responseText.startsWith("<!doctype")) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Received an HTML response, indicating a server error.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                return;
+            }
 
-                if (xhr.status === 200) {
-                    if (response.success) {
-                        Swal.fire({
-                            title: 'Success!',
-                            text: response.message,
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then(() => {
-                            window.location.href = response.redirect_url;
-                        });
-                    } else {
-                        Swal.fire({
-                            title: 'Error!',
-                            text: response.message,
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
-                    }
-                } else if (xhr.status === 401) {
-                    // Handle unauthorized error specifically
+            var response = JSON.parse(xhr.responseText);
+
+            if (xhr.status === 200) {
+                if (response.success) {
                     Swal.fire({
-                        title: 'Unauthorized!',
-                        text: 'You are not authorized to perform this action.',
-                        icon: 'warning',
+                        title: 'Success!',
+                        text: response.message,
+                        icon: 'success',
                         confirmButtonText: 'OK'
+                    }).then(() => {
+                        window.location.href = response.redirect_url;
                     });
                 } else {
-                    // Handle other server errors
                     Swal.fire({
                         title: 'Error!',
-                        text: response.message || 'An error occurred. Please try again.',
+                        text: response.message,
                         icon: 'error',
                         confirmButtonText: 'OK'
                     });
                 }
+            } else if (xhr.status === 401) {
+                // Handle unauthorized error specifically
+                Swal.fire({
+                    title: 'Unauthorized!',
+                    text: 'You are not authorized to perform this action.',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                });
             } else {
-                // Handle empty or invalid JSON response
+                // Handle other server errors
                 Swal.fire({
                     title: 'Error!',
-                    text: 'Empty response from the server.',
+                    text: response.message || 'An error occurred. Please try again.',
                     icon: 'error',
                     confirmButtonText: 'OK'
                 });
             }
-        } catch (e) {
-            console.error('Failed to parse JSON response:', e);
+        } else {
+            // Handle empty or invalid JSON response
             Swal.fire({
                 title: 'Error!',
-                text: 'An error occurred while processing the response.',
+                text: 'Empty response from the server.',
                 icon: 'error',
                 confirmButtonText: 'OK'
             });
         }
-    };
+    } catch (e) {
+        console.error('Failed to parse JSON response:', e);
+        Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred while processing the response.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    }
+};
+
 
     xhr.onerror = function() {
         Swal.fire({
